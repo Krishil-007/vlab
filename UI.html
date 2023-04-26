@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Chemistry Virtual Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kalam&family=M+PLUS+Rounded+1c&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Secular+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
+
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="simu.css">
+  <link rel="stylesheet" href="quiz.css">
+  <script src="https://kit.fontawesome.com/6bf4d6296c.js" crossorigin="anonymous"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Questrial', sans-serif;
+
+
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    h3 {
+      font-size: 1.2rem;
+    }
+
+    header {
+      text-align: center;
+      background: linear-gradient(to bottom right, #3b3d4b, #1c1d26);
+      padding: 20px;
+      position: relative;
+      background-color: #000000;
+      background-image: linear-gradient(147deg, #000000 0%, #04619f 74%);
+    }
+
+    header h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      color: #fff;
+      margin: 0;
+      text-shadow: 2px 2px #000;
+      font-family: 'Secular One', sans-serif;
+    }
+
+    section {
+      display: block;
+      margin: 2rem auto;
+      width: 80%;
+    }
+
+    #simulations {
+      margin: 0;
+      width: 100vw;
+      height: 102vh;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: space-evenly;
+      margin: 0;
+      padding: 0;
+      background-color: #3b3d4b;
+      border-bottom: 1px solid #ccc;
+    }
+
+    nav li {
+      margin: 0;
+      padding: 0;
+    }
+
+    nav button {
+      font-size: 16px;
+      font-weight: bold;
+      padding: 15px;
+      margin: 0;
+      border: none;
+      background-color: transparent;
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    nav button:hover {
+      background-color: #fff;
+      color: #3b3d4b;
+    }
+
+    nav button :focus {
+      background-color: #fff;
+      color: #3b3d4b;
+      box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+    }
+
+
+    .experiment {
+      background-color: #f9f9f9;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+
+    .experiment h2 {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .experiment h3 {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .experiment p {
+      font-size: 16px;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+
+    .experiment ul {
+      list-style-type: disc;
+      margin: 0 0 10px 20px;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .experiment li {
+      margin-bottom: 5px;
+    }
+
+    .logOut {
+      position: absolute;
+      right: 2rem;
+      top: 1rem;
+      font-size: 1.5rem;
+      color: white;
+      border-radius: 50%;
+      width: 2.5rem;
+      height: 2.5rem;
+      
+      text-align: center;
+      align-items: center;
+      display: grid;
+    }
+
+    .logOut:hover {
+      box-shadow: 2px 2px 2px 1px;
+      color: white;
+      text-decoration: none;
+    }
+
+
+
+    .aimClass,
+    .apprClass,
+    .derClass {
+      display: grid;
+      grid-template-columns: 1fr 9fr;
+      align-items: first baseline;
+    }
+
+    .derClass li::marker {
+      font-size: 1.5rem;
+    }
+
+    .brLawimg {
+      float: right;
+      margin: 1rem;
+      width: 35%;
+    }
+
+    #quizFrame,
+    #simuFrame {
+      display: block;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    .ins1 {
+      margin: 0 2rem 1rem 0;
+      float: left;
+      width: 22%;
+      border-radius: 20px;
+    }
+
+    .ins3 {
+      margin: 0 2rem 1rem 0;
+      float: right;
+      width: 23%;
+      border-radius: 20px;
+    }
+
+    .ins2 {
+      width: 65%;
+      border-radius: 20px;
+    }
+
+    .ins4 {
+      width: 53%;
+border-radius: 20px;
+    }
+
+    .insImgs {
+      margin: 1rem;
+      /* display: grid; */
+      /* grid-template-columns: 1fr 2fr; */
+      display: flex;
+      gap: 3rem;
+    }
+  </style>
+</head>
+
+<body onload="showSection('aim-and-apparatus')">
+  <header>
+    <h1 class="mainTitle">Bragg's Law</h1>
+    <a class="logOut" href="/CAT_Innovative/login.php"><i class="fa-solid fa-right-from-bracket"></i></a>
+  </header>
+  <nav id="navbarSection">
+    <ul>
+      <li><button onclick="showSection('aim-and-apparatus');slideTo('navbarSection');">Aim & Apparatus</button></li>
+      <li><button onclick="showSection('procedure');slideTo('navbarSection');">Procedure</button></li>
+      <li><button onclick="showSection('simulations');slideTo('navbarSection');">Simulations</button></li>
+      <li><button onclick="showSection('quiz');slideTo('navbarSection');">Quiz</button></li>
+    </ul>
+  </nav>
+
+
+  <section id="aim-and-apparatus">
+
+    <div class="aimClass">
+      <h3><b>Aim :</b></h3>
+      <p>The Aim of this practical is to determine order of diffraction observed on crystal surface from various values of d(parallel distance), wavelength(of emitted X-rays) and angle of incidence(&#920;).</p>
+
+    </div>
+    <hr>
+    <div class="apprClass">
+      <h3><b>Appratus :</b></h3>
+      <div>
+        <p>Bragg's law is a fundamental principle in X-ray crystallography, which describes the relationship between the
+          angles of incidence and diffraction of X-rays by a crystal lattice. The apparatus required to demonstrate
+          Bragg's law is relatively simple and typically includes the following:</p>
+        <p>(1) <b>X-ray source (such as a tube) :</b> A source of X-rays, such as an X-ray tube, is needed to produce a
+          beam of X-rays.
+        </p>
+        <p>(2) <b>Crystal sample:</b> A crystal of a known structure is required to diffract the X-ray beam. The crystal
+          should be of a suitable size and orientation to produce a diffracted beam that can be measured.</p>
+        <p>(3) <b>Collimator (to control the beam of X-rays) :</b> A collimator is used to narrow the X-ray beam and
+          ensure that it is of a suitable size
+          and shape to interact with the crystal sample.</p>
+        <p>(4) <b>X-ray detector (such as a film or digital sensor) :</b> A detector is used to measure the intensity
+          and angle of the diffracted X-ray beam.
+          Commonly used detectors include photographic film, scintillation counters, and area detectors.</p>
+        <p>(5) <b>Goniometer (to rotate the sample) :</b> A goniometer is used to position the crystal sample and
+          detector at the correct angles
+          with respect to the X-ray beam. This allows the diffraction pattern to be measured at different angles.</p>
+        <p>(6) <b>Data analysis software:</b> Specialized software is used to analyze the diffraction data and calculate
+          the crystal structure.</p>
+        <p>Together, these components make up a basic X-ray diffractometer, which is the primary tool used for
+          crystallographic research and the determination of crystal structures using Bragg's law.</p>
+      </div>
+    </div>
+    <hr>
+    <div class="derClass">
+      <h3><b>Derivation :</b></h3>
+      <div>
+        <img class="brLawimg" src="Image/Brlaw.jpeg" alt="">
+        <p>(Deriving Bragg's Law by Paul Schields)</p>
+        <ul style="padding-left: 0;">
+          <li>
+            <p>Bragg's Law can easily be derived by considering the conditions necessary to make the phases of the beams
+              coincide
+              when the incident angle equals and reflecting angle.</p>
+          </li>
+          <li>
+            <p>The rays of the incident beam are always in phase and parallel up to the point at which the top beam
+              strikes the top layer at atom z (Fig. 1). </p>
+          </li>
+          <li>
+            <p>The second beam continues to the next layer where it is scattered by atom B. The second beam must travel
+              the extra distance AB + BC if the two beams are to continue traveling adjacent and parallel. </p>
+          </li>
+          <li>
+            <p>This extra distance must be an integral (n) multiple of the wavelength (&#955;) for the phases of the two
+              beams to be the same:</p>
+          </li>
+
+        </ul>
+        <br>
+        <hr>
+        <p>‣ Fig. 1 Deriving Bragg's Law using the reflection geometry and applying trigonometry. The lower beam must
+          travel the extra distance (AB + BC) to continue traveling parallel and adjacent to the top beam.</p>
+        <p>‣ Recognizing d as the hypotenuse of the right triangle Abz, we can use trigonometry to relate d and &#920; to the
+          distance (AB + BC). The distance AB is opposite &#920; so,</p>
+        <div style="margin: auto;width: fit-content;">
+          <p>n&#955; = AB +BC (2).</p>
+          <p>AB = d sin&#920;(3).&emsp;&emsp;Because AB = BC eq. (2) becomes,</p>
+          <p>n&#955; = 2AB (4).&emsp;&emsp;Substituting eq. (3) in eq. (4) we have,</p>
+          <h3><b>n&#955; = 2 d sin&#920;</b></h3>
+        </div>
+
+        <p>and Bragg's Law has been derived. The location of the surface does not change the derivation of Bragg's Law.
+        </p>
+      </div>
+    </div>
+
+    <br>
+
+  </section>
+
+  <section id="simulations">
+
+
+    <!-- <i class="fa-solid fa-book-bookmark"></i> -->
+    <!-- <i class="fa-solid fa-book-open-cover"></i> -->
+    <div id="simulator">
+      <div class="cls">
+        <div class="instDiv">
+          <a onclick="toggleSlider('enable')"><i class="far fa-question-circle"></i></a>
+        </div>
+        <div class="videoDiv">
+          <a onclick="toggleVideo('enable')"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+        <div class="sim">
+          <div class="sim_container">
+            <div id="i_waves">
+              <svg id="wave_box"></svg>
+            </div>
+            <div id="o_waves">
+
+            </div>
+          </div>
+
+
+        </div>
+        <div class="comb">
+          <div class="con">
+            <div class="sliderLabel">
+              <label for="">Angle (in Degree 0-90) : </label>
+            </div>
+            <div class="sliderInput">
+              <input type="range" min="0" max="90" value="45" id="angleRange">
+            </div>
+            <div class="sliderLabel">
+              <label for="">Wavelength ( nm / &#8491;) :</label>
+              <select name="wavUnit" id="wavUnit">
+                <option value="nm">nm</option>
+                <option value="&#8491;">&#8491;</option>
+              </select>
+            </div>
+            <div class="sliderInput">
+              <input value="10" min="1" max="500" type="number" name="minwav" id="minwav">
+              <input type="range" min="10" max="100" value="50" id="wavRange">
+              <input value="100" min="1" max="500" type="number" name="maxwav" id="maxwav">
+            </div>
+            <div class="sliderLabel">
+              <label for="">Distance ( nm / &#8491;) : </label>
+              <select name="distUnit" id="distUnit">
+                <option value="nm">nm</option>
+                <option value="&#8491;">&#8491;</option>
+              </select>
+            </div>
+            <div class="sliderInput">
+              <input value="50" min="1" max="500" type="number" name="mindist" id="mindist">
+              <input type="range" min="50" max="300" value="100" id="distRange">
+              <input value="300" min="1" max="500" type="number" name="maxdist" id="maxdist">
+            </div>
+          </div>
+          <div class="con">
+            <div class="container2">
+              <div id="i_waves_illus">
+                <svg id="illustration"></svg>
+              </div>
+              <div id="o_waves_illus">
+              </div>
+
+            </div>
+          </div>
+          <div id="ansText" class="ansText"></div>
+        </div>
+      </div>
+      <div class="calc">
+        <div class="formulaContainer">
+          <h4>Formula : </h4>&emsp;
+          <img class="formulaImg" src="http://hyperphysics.phy-astr.gsu.edu/hbase/quantum/imgqua/Braggeq.gif" alt="">
+        </div>
+        <div class="parameterContainer">
+          <h4>Value of Parameteres : </h4><br>
+          <span id="calcParams">
+          </span>
+
+        </div>
+        <div class="calculationContainer">
+          <h4>Calculation for n : </h4>
+          <br>
+          <span id="calcSteps">
+          </span>
+
+        </div>
+      </div>
+    </div>
+    <div id="slideShow">
+      <div class="instCloseDiv">
+        <a onclick="toggleSlider('disable')"><i class="fa-solid fa-circle-arrow-right"></i></a>
+      </div>
+      <div class="slider">
+        <div class="slide_viewer">
+          <div class="slide_group">
+            <div class="slide">
+            </div>
+            <div class="slide">
+            </div>
+            <div class="slide">
+            </div>
+            <div class="slide">
+            </div>
+            <div class="slide">
+            </div>
+            <div class="slide">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide_buttons">
+      </div>
+
+      <div class="directional_nav">
+        <div class="previous_btn" title="Previous">
+          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+            y="0px" width="65px" height="65px" viewBox="-11 -11.5 65 66">
+            <g>
+              <g>
+                <path fill="#474544"
+                  d="M-10.5,22.118C-10.5,4.132,4.133-10.5,22.118-10.5S54.736,4.132,54.736,22.118
+            c0,17.985-14.633,32.618-32.618,32.618S-10.5,40.103-10.5,22.118z M-8.288,22.118c0,16.766,13.639,30.406,30.406,30.406 c16.765,0,30.405-13.641,30.405-30.406c0-16.766-13.641-30.406-30.405-30.406C5.35-8.288-8.288,5.352-8.288,22.118z" />
+                <path fill="#474544"
+                  d="M25.43,33.243L14.628,22.429c-0.433-0.432-0.433-1.132,0-1.564L25.43,10.051c0.432-0.432,1.132-0.432,1.563,0	c0.431,0.431,0.431,1.132,0,1.564L16.972,21.647l10.021,10.035c0.432,0.433,0.432,1.134,0,1.564	c-0.215,0.218-0.498,0.323-0.78,0.323C25.929,33.569,25.646,33.464,25.43,33.243z" />
+              </g>
+            </g>
+          </svg>
+        </div>
+        <div class="next_btn" title="Next">
+          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+            y="0px" width="65px" height="65px" viewBox="-11 -11.5 65 66">
+            <g>
+              <g>
+                <path fill="#474544"
+                  d="M22.118,54.736C4.132,54.736-10.5,40.103-10.5,22.118C-10.5,4.132,4.132-10.5,22.118-10.5	c17.985,0,32.618,14.632,32.618,32.618C54.736,40.103,40.103,54.736,22.118,54.736z M22.118-8.288	c-16.765,0-30.406,13.64-30.406,30.406c0,16.766,13.641,30.406,30.406,30.406c16.768,0,30.406-13.641,30.406-30.406 C52.524,5.352,38.885-8.288,22.118-8.288z" />
+                <path fill="#474544"
+                  d="M18.022,33.569c 0.282,0-0.566-0.105-0.781-0.323c-0.432-0.431-0.432-1.132,0-1.564l10.022-10.035 			L17.241,11.615c 0.431-0.432-0.431-1.133,0-1.564c0.432-0.432,1.132-0.432,1.564,0l10.803,10.814c0.433,0.432,0.433,1.132,0,1.564 L18.805,33.243C18.59,33.464,18.306,33.569,18.022,33.569z" />
+              </g>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div id="video">
+      <div class="videoCloseDiv">
+        <a onclick="toggleVideo('disable')"><i class="fa-solid fa-circle-arrow-left"></i></a>
+      </div>
+      <video height="100%" controls>
+        <source src="demonstration.mp4" type="video/mp4" />
+      </video>
+    </div>
+  </section>
+
+  <section id="quiz">
+    <div class="quizDiv">
+      <h1>Quiz</h1>
+      <div id="resultDiv">
+      </div>
+      <form id="quiz-form">
+      </form>
+
+    </div>
+
+  </section>
+
+  <section id="procedure">
+    <h1><b>Instrument : </b></h1>
+    <br>
+    <div style="position: relative;line-height: 1.5rem;">
+      <img class="ins1" src="Image/ins1.jpg" alt="">
+      <h3><b>Steps : </b></h3>
+      <ol>
+        <li>Mount the crystal sample on the goniometer in the X-ray beam path. The crystal should be positioned so that
+          the X-rays hit the crystal at an appropriate angle.</li>
+        <!-- <br> -->
+        <li>Use the collimator to adjust the size and shape of the X-ray beam.</li>
+        <li>Turn on the X-ray source and direct the beam at the crystal sample.</li>
+        <li>Rotate the goniometer to change the angle between the crystal and the incoming X-rays. This will change the
+          angle of diffraction.</li>
+        <li>Place the X-ray detector on the other side of the crystal and position it to detect the diffracted X-rays.
+        </li>
+        <li>Record the diffraction pattern by either taking a photograph of the detector or recording the signal
+          digitally.</li>
+        <li>Analyze the diffraction pattern to determine the angles of the diffracted X-rays and calculate the
+          interplanar spacing of the crystal lattice using Bragg's law.</li>
+      </ol>
+      <p>Note: The specific details of this procedure may vary depending on the specific experiment and equipment used.
+        It is important to consult the instructions provided with your equipment and follow established laboratory
+        safety protocols.</p>
+
+    </div>
+    <br>
+    <hr>
+    <br>
+    <div style="position: relative;line-height: 1.5rem;">
+      <img class="ins3" src="Image/ins3.jpg" alt="">
+      <p>In an XRD spectrometer, a sample is exposed to a beam of X-rays, which causes the atoms in the sample to
+        diffract the X-rays in different directions. The diffracted X-rays are collected by a detector, and the
+        resulting diffraction pattern is analyzed to determine the crystal structure of the material.</p>
+      <p>The diffraction pattern is produced when the X-rays interact with the atoms in the sample in a way that depends
+        on the spacing of the atoms in the crystal lattice. The X-rays that are diffracted by the atoms interfere with
+        each other, resulting in a pattern of bright spots and dark areas on the detector. The positions and intensities
+        of these spots are determined by the crystal structure of the material.</p>
+      <p>XRD spectrometers are used in a wide range of applications, including material science, chemistry, physics, and
+        geology. They are capable of providing information about the crystalline structure of materials, including the
+        lattice constant, crystal symmetry, and orientation of the crystal lattice. This information can be used to
+        determine the composition of a material, to identify unknown materials, and to study the properties of materials
+        at the atomic and molecular level.</p>
+
+    </div>
+    <br>
+    <hr>
+    <br>
+    <div class="insImgs">
+      <img class="ins4" src="Image/ins45.jpg" alt="">
+      <img class="ins2" src="Image/ins2.jpg" alt="">
+    </div>
+  </section>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="quiz.js"></script>
+  <script src="simu.js"></script>
+</body>
+
+</html>
